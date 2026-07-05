@@ -1,0 +1,1629 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, "Segoe UI", Tahoma, sans-serif;
+  font-size: 16px;
+  color: black;
+  background-color: rgb(242, 233, 220);
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+  font-family: serif;
+  margin-bottom: 15px;
+}
+
+h1 {
+  font-size: 2.5em;
+  color: white;
+}
+
+h2 {
+  font-size: 2em;
+  color: rgb(179, 13, 13);
+}
+
+h3 {
+  font-size: 1.5em;
+  color: rgb(241, 63, 63);
+}
+
+.site-header {
+  background-color: #b30000;
+  color: rgba(242, 234, 234, 0.893);
+  padding: 1.5em 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.logo h1 {
+  font-size: 3em;
+  margin: 0;
+}
+
+.nav-list {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  padding: 10px;
+  list-style: none;
+}
+
+.nav-list a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+}
+
+.nav-list a:hover {
+  background-color: transparent;
+}
+
+.active {
+  background-color: gray;
+  font-weight: bold;
+  border-bottom: 2px solid white;
+}
+
+.burger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 25px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.burger span {
+  width: 100%;
+  height: 3px;
+  background-color: white;
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+.menu-mobile {
+  display: none;
+  flex-direction: column;
+  background-color: #fbf8ec;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  z-index: 1000;
+}
+
+.menu-mobile a {
+  color: black;
+  text-decoration: none;
+  padding: 15px 0;
+  border-bottom: 2px solid transparent;
+}
+.menu-mobile a:hover {
+  background-color: #fae9d5;
+  border-bottom: 2px solid transparent;
+  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .nav-list {
+    display: none;
+  }
+
+  .burger {
+    display: flex;
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  #menu-toggle:checked ~ .burger span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  #menu-toggle:checked ~ .burger span:nth-child(2) {
+    opacity: 0;
+  }
+
+  #menu-toggle:checked ~ .burger span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  #menu-toggle:checked ~ .main-nav .menu-mobile {
+    display: flex;
+  }
+
+  .site-header {
+    padding: 15px 20px;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+
+  .logo {
+    margin-left: 50px;
+  }
+
+  .logo h1 {
+    font-size: 1.8em;
+  }
+
+  /* Responsive pour grille d'événements */
+  .grid-evenements {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .card-event {
+    flex: 1 1 300px;
+    min-width: 90%;
+    max-width: 350px;
+    margin: 0 auto;
+  }
+
+  .card-event h3 {
+    font-size: 1.2em; /* Réduire la taille des titres sur mobile */
+  }
+
+  /* Responsive pour galerie */
+  .galerie-photos {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .galerie-photos figure {
+    min-width: 100%;
+    max-width: 80%;
+    margin: 0 auto;
+  }
+
+  .galerie-photos img {
+    height: 200px;
+  }
+}
+
+/* Tablette : carte event et galerie en largeur */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .grid-evenements {
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .card-event {
+    flex: 1 1 calc(45% - 20px);
+    min-width: 280px;
+    max-width: calc(45% - 20px);
+    margin: 0;
+  }
+
+  .galerie-photos {
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .galerie-photos figure {
+    flex: 1 1 calc(45% - 20px);
+    min-width: 280px;
+    max-width: calc(45% - 20px);
+    margin: 0;
+  }
+}
+
+/* Grille d'événements */
+.grid-evenements {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  margin: 20px 0;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.card-event {
+  flex: 0 1 300px;
+  min-width: 280px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+  display: flex;
+  flex-direction: column;
+  min-height: 460px;
+}
+
+.card-event:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-event img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-event h3,
+.card-event p {
+  padding: 10px;
+  margin: 0;
+  color: crimson; /* Titres en couleur crimson */
+}
+
+.card-event a.btn {
+  margin-top: auto; /* Aligne le bouton en bas de la carte */
+  margin: 10px;
+  align-self: stretch; /* Étend le bouton sur toute la largeur */
+}
+
+/* Galerie photos */
+.galerie-photos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  margin: 20px 0;
+  justify-content: center;
+}
+
+.galerie-photos figure {
+  flex: 0 1 30%;
+  min-width: 280px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+}
+
+.galerie-photos figure:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.galerie-photos img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.galerie-photos figcaption {
+  padding: 15px;
+  font-size: 0.95rem;
+  font-weight: bold;
+  color: #333;
+  background: #fff;
+  border-top: 1px solid #eee;
+}
+
+.event-image {
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  margin: 24px auto;
+  border-radius: 18px;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.14);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  object-fit: contain;
+}
+
+/* Responsive pour mobiles : réduire l'image et marges */
+@media (max-width: 768px) {
+  .event-image {
+    max-width: 95%;
+    margin: 16px auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+  }
+}
+
+/* Responsive pour très petits écrans (smartphones) */
+@media (max-width: 480px) {
+  .event-image {
+    max-width: 100%;
+    padding: 0 10px;
+    margin: 12px auto;
+    border-radius: 10px;
+  }
+}
+
+/* Conteneur pour le contenu de l'événement (description et boutons) */
+.event-content {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Conteneur pour les boutons d'action */
+.event-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.event-actions .btn {
+  width: 100%;
+  text-align: center;
+}
+
+/* Style pour les infos et description */
+#event-infos,
+#event-description {
+  line-height: 1.8;
+  color: #333;
+  text-align: justify;
+}
+
+.infos {
+  font-weight: 600;
+  color: #b30000;
+  font-size: 1.05em;
+}
+
+.site-footer {
+  background-color: #2c3e50;
+  color: rgba(242, 234, 234, 0.893);
+  text-align: center;
+  padding: 1.8em;
+  margin-top: 2rem;
+}
+
+.btn {
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 45px;
+  font-weight: 600;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+  background-color: #c0392b;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.btn-primary:active {
+  background-color: #a93226;
+}
+
+.btn-secondary {
+  background-color: #95a5a6;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: #7f8c8d;
+  color: white;
+}
+
+.btn-secondary:active {
+  background-color: #6c7a7b;
+}
+
+/* Boutons sous les formulaires */
+form .btn {
+  margin-top: 15px;
+  width: 100%;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.95rem;
+}
+
+form .btn + .btn {
+  margin-top: 10px;
+}
+
+/* Call-to-action button centered below gallery */
+.call-to-action {
+  display: flex;
+  justify-content: center;
+  margin: 40px 0;
+  padding: 20px;
+}
+
+/* Boutons sous les images (dans les galeries et cartes) */
+.card-event .btn,
+.galerie-photos + .btn,
+.event-image + .btn {
+  margin-top: 20px;
+  display: block;
+}
+
+/* Boutons au sein des conteneurs flex */
+.event-actions .btn {
+  width: 100%;
+  text-align: center;
+}
+
+/* Style particulier pour les boutons dans les sections d'actions */
+.profile-actions .btn,
+.action-buttons .btn {
+  padding: 12px 20px;
+  font-size: 0.95rem;
+  min-width: 140px;
+  transition: all 0.3s ease;
+}
+
+/* Affichage des messages d'erreur */
+.error {
+  color: #e74c3c;
+  background-color: #ffe6e6;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 10px 0;
+}
+.success {
+  color: #27ae60;
+  background-color: #e8f8f0;
+  padding: 12px;
+  border-radius: 6px;
+  margin: 15px 0;
+  border: 1px solid #27ae60;
+}
+
+/* ============================================================
+   STYLES SPECIFIQUES POUR LE FORMULAIRE D'ADHESION (PRO)
+   ============================================================ */
+
+/* Conteneur principal pour limiter la largeur sur PC */
+.form-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+/* Style de la "Carte" du formulaire */
+#register-form {
+  background-color: white;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Styling des titres à l'intérieur du formulaire */
+#register-form h2 {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #b30000;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+/* Organisation des groupes de champs (Fieldsets) */
+fieldset {
+  border: none;
+  margin-bottom: 30px;
+  padding: 0;
+}
+
+legend {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #2c3e50; /* Couleur sombre du footer pour le contraste */
+  margin-bottom: 15px;
+  display: block;
+  width: 100%;
+}
+
+/* Layout des labels et inputs */
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+/* Amélioration des champs de saisie */
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="date"],
+select,
+textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1.5px solid #ddd;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background-color: #fafafa;
+}
+
+/* Effet interactif quand on clique dans un champ */
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #b30000;
+  background-color: white;
+  box-shadow: 0 0 0 4px rgba(179, 0, 0, 0.1);
+}
+
+/* Ajustement pour le textarea */
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* Harmonisation du bouton avec tes classes existantes */
+#register-form .btn.btn-primary {
+  width: 100%;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+/* Responsive : sur mobile, on réduit un peu le padding */
+@media (max-width: 768px) {
+  #register-form {
+    padding: 25px 15px;
+  }
+}
+
+/* Conteneur pour les boutons sous les formulaires */
+.form-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.form-actions .btn {
+  width: 100%;
+}
+
+.form-actions .btn + .btn {
+  margin-top: 10px;
+}
+
+/* ============================================================
+   STYLES POUR LA PAGE PROFIL (GRID SYSTEM)
+   ============================================================ */
+
+/* Grille des inscriptions avec système grid moderne */
+.inscriptions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 25px;
+  padding: 30px 20px;
+  margin: 30px 0;
+  background-color: transparent;
+}
+
+/* Carte d'inscription - Design moderne et professionnel */
+.card-inscription {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Effet au survol de la carte */
+.card-inscription:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+  transform: translateY(-4px);
+}
+
+/* En-tête de la carte avec titre et numéro */
+.card-header {
+  background: linear-gradient(135deg, #b30000 0%, #8b0000 100%);
+  color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-header h4 {
+  margin: 0;
+  font-size: 1.3em;
+  color: white;
+}
+
+.card-index {
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.85em;
+  font-weight: bold;
+}
+
+/* Corps de la carte */
+.card-body {
+  padding: 20px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Chaque champ dans la carte */
+.card-field {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.card-field:last-child {
+  border-bottom: none;
+}
+
+.card-field strong {
+  color: #b30000;
+  font-weight: 600;
+  word-break: break-word;
+}
+
+.card-field span {
+  color: #333;
+  word-break: break-word;
+}
+
+/* Aucune inscription message */
+.no-inscriptions {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  color: #999;
+  font-size: 1.1em;
+  background-color: white;
+  border-radius: 12px;
+  border: 2px dashed #ddd;
+}
+
+/* Section utilisateur */
+.user-info {
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  margin: 20px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-left: 4px solid #b30000;
+}
+
+.user-info p {
+  margin: 0;
+  font-size: 1em;
+}
+
+.user-info strong {
+  color: #b30000;
+}
+
+/* Boutons d'action du profil */
+.profile-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  padding: 30px 20px;
+  margin-top: 20px;
+}
+
+.profile-actions .btn {
+  width: auto;
+  min-width: 150px;
+}
+
+/* Responsive pour tablettes (768px à 1024px) */
+@media (max-width: 1024px) {
+  .inscriptions-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 25px 15px;
+  }
+
+  .card-field {
+    grid-template-columns: 110px 1fr;
+  }
+}
+
+/* Responsive pour mobiles (moins de 768px) */
+@media (max-width: 768px) {
+  .inscriptions-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    padding: 20px 10px;
+  }
+
+  .card-header {
+    padding: 15px;
+  }
+
+  .card-header h4 {
+    font-size: 1.1em;
+  }
+
+  .card-body {
+    padding: 15px;
+    gap: 10px;
+  }
+
+  .card-field {
+    grid-template-columns: 100px 1fr;
+    gap: 8px;
+  }
+
+  .card-field strong {
+    font-size: 0.95em;
+  }
+
+  .card-field span {
+    font-size: 0.95em;
+  }
+
+  .profile-actions {
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px 15px;
+  }
+
+  .profile-actions .btn {
+    width: 100%;
+  }
+
+  .user-info {
+    padding: 15px;
+  }
+
+  .no-inscriptions {
+    padding: 40px 15px;
+    font-size: 1em;
+  }
+}
+
+/* ============================================================
+   STYLES POUR LE TABLEAU DES ÉVÉNEMENTS (CALENDRIER)
+   ============================================================ */
+
+/* Conteneur du tableau pour gestion de l'overflow */
+.table-container {
+  width: 100%;
+  padding: 0 20px;
+  margin: 20px 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 30px auto;
+  background-color: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+table caption {
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #b30000;
+  padding: 20px;
+  text-align: left;
+  background-color: #fbf8ec;
+}
+
+/* En-tête du tableau */
+thead {
+  background: linear-gradient(135deg, #b30000 0%, #8b0000 100%);
+}
+
+th {
+  color: white;
+  padding: 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 1em;
+  letter-spacing: 0.5px;
+}
+
+/* Corps du tableau */
+td {
+  padding: 16px;
+  border-bottom: 1px solid #e0e0e0;
+  color: #333;
+  font-size: 0.95em;
+}
+
+/* Ligne du tableau au survol */
+tbody tr {
+  transition: all 0.3s ease;
+}
+
+tbody tr:hover {
+  background-color: #fff8f0;
+  box-shadow: 0 2px 8px rgba(179, 0, 0, 0.1);
+  transform: scale(1.01);
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Colonne "Détails" - centrage des boutons */
+td:last-child {
+  text-align: center;
+}
+
+/* Style des boutons dans le tableau */
+table .btn {
+  padding: 10px 18px;
+  font-size: 0.9rem;
+  min-width: 120px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+table .btn-primary {
+  background-color: #b30000;
+  color: white;
+  text-decoration: none;
+}
+
+table .btn-primary:hover {
+  background-color: #8b0000;
+  box-shadow: 0 6px 16px rgba(179, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+table .btn-primary:active {
+  background-color: #700000;
+  transform: translateY(0);
+}
+
+/* Responsive pour tablettes */
+@media (max-width: 1024px) {
+  table {
+    font-size: 0.95em;
+  }
+
+  th,
+  td {
+    padding: 12px;
+  }
+
+  th {
+    font-size: 0.95em;
+  }
+}
+
+/* Responsive pour mobiles */
+@media (max-width: 768px) {
+  table {
+    font-size: 0.85em;
+    border-radius: 8px;
+  }
+
+  table caption {
+    font-size: 1.1em;
+    padding: 15px;
+  }
+
+  th,
+  td {
+    padding: 10px 8px;
+  }
+
+  th {
+    font-size: 0.85em;
+    white-space: nowrap;
+  }
+
+  /* Masquer colonne Lieu sur très petits écrans */
+  @media (max-width: 480px) {
+    th:nth-child(3),
+    td:nth-child(3) {
+      display: none;
+    }
+
+    table .btn {
+      padding: 8px 12px;
+      font-size: 0.8rem;
+      min-width: 100px;
+    }
+  }
+}
+
+/* ============================================================
+   STYLES POUR LA GRILLE DES MEMBRES (ABOUT PAGE)
+   ============================================================ */
+
+.members-section {
+  padding: 40px 20px;
+  margin: 40px 0;
+}
+
+.members-section h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 2.2em;
+}
+
+/* Grille des cartes de membres */
+.members-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Carte membre - Design professionnel */
+.card-member {
+  background-color: white;
+  border: 2px solid #b30000;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+/* Effet au survol */
+.card-member:hover {
+  box-shadow: 0 8px 20px rgba(179, 0, 0, 0.15);
+  transform: translateY(-5px);
+  border-color: #8b0000;
+}
+
+/* En-tête de la carte avec icône */
+.card-member-header {
+  background: linear-gradient(135deg, #b30000 0%, #8b0000 100%);
+  color: white;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.member-icon {
+  font-size: 3em;
+  line-height: 1;
+}
+
+.card-member-header h3 {
+  margin: 0;
+  font-size: 1.4em;
+  color: white;
+  word-wrap: break-word;
+}
+
+/* Corps de la carte */
+.card-member-body {
+  padding: 25px 20px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.member-bio {
+  font-size: 0.95em;
+  line-height: 1.6;
+  color: #333;
+  font-style: italic;
+  margin: 0;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.member-date {
+  margin: 0;
+  font-size: 0.9em;
+  color: #666;
+  padding-top: 15px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.member-date strong {
+  color: #b30000;
+}
+
+/* Message pour aucun membre */
+.no-members {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  color: #999;
+  font-size: 1.1em;
+  background-color: white;
+  border-radius: 12px;
+  border: 2px dashed #ddd;
+}
+
+/* Responsive pour tablettes */
+@media (max-width: 1024px) {
+  .members-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 15px;
+  }
+
+  .card-member-header {
+    padding: 25px 15px;
+    gap: 10px;
+  }
+
+  .member-icon {
+    font-size: 2.5em;
+  }
+
+  .card-member-header h3 {
+    font-size: 1.2em;
+  }
+}
+
+/* Responsive pour mobiles */
+@media (max-width: 768px) {
+  .members-section {
+    padding: 20px 10px;
+    margin: 20px 0;
+  }
+
+  .members-section h2 {
+    font-size: 1.8em;
+    margin-bottom: 25px;
+  }
+
+  .members-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    padding: 10px;
+  }
+
+  .card-member {
+    border: 2px solid #b30000;
+  }
+
+  .card-member-header {
+    padding: 20px 15px;
+    gap: 12px;
+  }
+
+  .member-icon {
+    font-size: 2.2em;
+  }
+
+  .card-member-header h3 {
+    font-size: 1.1em;
+  }
+
+  .card-member-body {
+    padding: 20px 15px;
+    gap: 12px;
+  }
+
+  .member-bio {
+    font-size: 0.9em;
+    min-height: 50px;
+  }
+
+  .member-date {
+    font-size: 0.85em;
+    padding-top: 10px;
+  }
+
+  .no-members {
+    padding: 40px 15px;
+    font-size: 1em;
+  }
+}
+
+/* Styles pour les boutons d'action des cartes membres */
+.card-member-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+  justify-content: center;
+}
+
+.card-member-actions .btn {
+  flex: 1;
+  padding: 10px 15px;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  min-height: 40px;
+}
+
+.btn-edit {
+  background-color: #3498db;
+  color: white;
+}
+
+.btn-edit:hover {
+  background-color: #2980b9;
+  box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+  transform: translateY(-2px);
+}
+
+.btn-edit:active {
+  background-color: #1f618d;
+  transform: translateY(0);
+}
+
+.btn-delete {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.btn-delete:hover {
+  background-color: #c0392b;
+  box-shadow: 0 4px 8px rgba(231, 76, 60, 0.3);
+  transform: translateY(-2px);
+}
+
+.btn-delete:active {
+  background-color: #a93226;
+  transform: translateY(0);
+}
+
+/* Responsive pour les boutons sur mobiles */
+@media (max-width: 768px) {
+  .card-member-actions {
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .card-member-actions .btn {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    min-height: 36px;
+  }
+}
+
+/* ============================================================
+   STYLES POUR LA PAGE ABOUT - DESIGN PROFESSIONNEL
+   ============================================================ */
+
+/* Main container */
+.about-main {
+  background-color: #f9f7f4;
+}
+
+/* ---- SECTION HÉRO ---- */
+.hero-section {
+  background: linear-gradient(135deg, #b30000 0%, #8b0000 100%);
+  color: white;
+  padding: 80px 20px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero-title {
+  font-size: 3.5em;
+  font-family: "Segoe UI", "Roboto", Arial, sans-serif;
+  margin-bottom: 20px;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+.hero-subtitle {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  font-weight: 300;
+  opacity: 0.95;
+  font-family: "Segoe UI", "Roboto", Arial, sans-serif;
+}
+
+.hero-description {
+  font-size: 1.1em;
+  line-height: 1.8;
+  opacity: 0.9;
+  font-family: "Segoe UI", "Roboto", Arial, sans-serif;
+}
+
+/* ---- SECTION HISTOIRE ---- */
+.about-section {
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.about-text h2 {
+  font-family: "Segoe UI", "Roboto", Arial, sans-serif;
+  color: #b30000;
+  font-size: 2.2em;
+  margin-bottom: 25px;
+  font-weight: 700;
+}
+
+.about-text p {
+  font-family: "Segoe UI", "Roboto", Arial, sans-serif;
+  color: #333;
+  font-size: 1.05em;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+.about-image {
+  display: flex;
+  justify-content: center;
+}
+
+.about-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(179, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.about-img:hover {
+  box-shadow: 0 15px 40px rgba(179, 0, 0, 0.25);
+  transform: translateY(-5px);
+}
+
+/* ---- SECTION COMMUNAUTÉ ---- */
+.community-section {
+  padding: 60px 20px;
+  background-color: white;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.community-header {
+  text-align: center;
+  margin-bottom: 50px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.community-header h2 {
+  font-family: "Segoe UI", "Roboto", Arial, sans-serif;
+  color: #b30000;
+  font-size: 2.5em;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.community-subtitle {
+  font-family: "Segoe UI", "Roboto", Arial, sans-serif;
+  color: #666;
+  font-size: 1.2em;
+  font-weight: 300;
+}
+
+/* Grille des membres améliorée */
+.members-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Responsive: Tablettes */
+@media (max-width: 1024px) {
+  .hero-title {
+    font-size: 2.8em;
+  }
+
+  .hero-subtitle {
+    font-size: 1.3em;
+  }
+
+  .hero-section {
+    padding: 60px 20px;
+  }
+
+  .about-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .about-section {
+    padding: 40px 20px;
+  }
+
+  .about-text h2 {
+    font-size: 2em;
+  }
+
+  .community-section {
+    padding: 40px 20px;
+  }
+
+  .community-header h2 {
+    font-size: 2.2em;
+  }
+}
+
+/* Responsive: Mobiles */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.2em;
+  }
+
+  .hero-subtitle {
+    font-size: 1.1em;
+  }
+
+  .hero-description {
+    font-size: 1em;
+  }
+
+  .hero-section {
+    padding: 50px 15px;
+  }
+
+  .about-section {
+    padding: 30px 15px;
+  }
+
+  .about-container {
+    gap: 30px;
+  }
+
+  .about-text h2 {
+    font-size: 1.7em;
+    margin-bottom: 20px;
+  }
+
+  .about-text p {
+    font-size: 1em;
+    text-align: left;
+    margin-bottom: 15px;
+  }
+
+  .community-section {
+    padding: 30px 15px;
+  }
+
+  .community-header h2 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+  }
+
+  .community-subtitle {
+    font-size: 1.05em;
+  }
+
+  .members-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 10px;
+  }
+}
+
+/* Responsive: Très petits écrans */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 1.8em;
+  }
+
+  .hero-subtitle {
+    font-size: 1em;
+  }
+
+  .hero-description {
+    font-size: 0.95em;
+  }
+
+  .about-text p {
+    font-size: 0.95em;
+    line-height: 1.6;
+  }
+}
+.members-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px 0;
+}
+
+.member-card {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-top: 3px solid #b30000; /* Le rouge de ton club */
+  transition: transform 0.3s;
+}
+
+.member-card:hover {
+  transform: translateY(-5px);
+}
+
+.member-icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.member-card h4 {
+  margin: 10px 0 5px 0;
+  color: #333;
+  text-transform: capitalize;
+}
+
+.member-role {
+  color: #b30000;
+  font-size: 0.9em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.member-date {
+  font-size: 0.8em;
+  color: #888;
+}
+.member-actions {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.btn-modifier {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-supprimer {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-modifier:hover {
+  background-color: #2980b9;
+}
+.btn-supprimer:hover {
+  background-color: #c0392b;
+}
+/* Container principal de la section À Propos */
+.about-intro {
+  display: flex;
+  align-items: center; /* Centre verticalement le texte et l'image */
+  justify-content: space-between;
+  gap: 40px; /* Espace entre le texte et l'image */
+  padding: 60px 5%;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  margin: 40px auto;
+  max-width: 1100px;
+}
+
+/* Texte à l'intérieur */
+.about-intro .intro {
+  flex: 1; /* Prend l'espace disponible */
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: #444;
+  text-align: justify;
+  margin: 0;
+}
+
+/* Titre h2 spécifique à la section */
+.about-intro h2 {
+  color: #b30000;
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+/* Effet design sur l'image */
+.about-intro img {
+  flex: 1;
+  max-width: 450px; /* Empêche l'image d'être trop géante */
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 15px 15px 0px #fce4e4; /* Ombre pleine style moderne */
+  transition: transform 0.3s ease;
+}
+
+.about-intro img:hover {
+  transform: scale(1.03); /* Petit zoom au survol */
+}
+
+/* --- RESPONSIVE (MOBILE) --- */
+@media (max-width: 768px) {
+  .about-intro {
+    flex-direction: column; /* Empile le texte et l'image sur mobile */
+    text-align: center;
+    padding: 30px 20px;
+  }
+
+  .about-intro img {
+    max-width: 100%;
+    box-shadow: 10px 10px 0px #fce4e4;
+  }
+}

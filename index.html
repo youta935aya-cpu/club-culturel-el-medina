@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="description" content=" Club Culturel El Medina (Tunis)" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Connexion - Club Culturel El Medina (Tunis)</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body class="theme-club">
+    <header class="site-header">
+      <div class="logo">
+        <h1>Club Culturel El Medina</h1>
+      </div>
+      <input type="checkbox" id="menu-toggle" hidden />
+      <label for="menu-toggle" class="burger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+      <nav class="main-nav" aria-label="Menu principal">
+        <ul class="nav-list menu-desktop">
+          <li><a href="home.html">Accueil</a></li>
+          <li><a href="index.html" class="active">Connexion</a></li>
+          <li><a href="about.html">À propos</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="profile.html">Profil</a></li>
+          <li><a href="galerie.html">Galerie</a></li>
+          <li><a href="adhesion.html">Adhésion</a></li>
+          <li><a href="calendrier.html">Calendrier</a></li>
+        </ul>
+        <div class="menu-mobile" hidden>
+          <a href="home.html">Accueil</a>
+          <a href="index.html">Connexion</a>
+          <a href="about.html">À propos</a>
+          <a href="contact.html">Contact</a>
+          <a href="profile.html">Profil</a>
+          <a href="galerie.html">Galerie</a>
+          <a href="adhesion.html">Adhésion</a>
+          <a href="calendrier.html">Calendrier</a>
+        </div>
+      </nav>
+      <label for="menu-toggle" class="menu-overlay"></label>
+    </header>
+
+    <main>
+      <h2>Connexion à votre espace</h2>
+      <div id="error-message" class="error"></div>
+      <form id="login-form" class="form-container">
+        <div class="form-group">
+          <label for="email">Email :</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="user@club.tn"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Mot de passe :</label>
+          <input type="password" id="password" name="password" required />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Se connecter</button>
+      </form>
+      <div id="error-message" class="error"></div>
+    </main>
+
+    <footer class="site-footer">
+      <p>© 2026 Club Culturel El Medina – Tunis | Tous droits réservés</p>
+      <p>
+        <a href="contact.html">Nous contacter</a> |
+        <a href="about.html">À propos</a>
+      </p>
+    </footer>
+    <script src="js/script.js"></script>
+  </body>
+</html>
