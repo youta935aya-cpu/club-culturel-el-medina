@@ -1,9 +1,50 @@
-Projet : Intégration d'une Interface Web Responsive – Club Culturel El Medina
+# Club Culturel El Medina
 
-Développement complet d'un site web responsive pour le Club Culturel El Medina en HTML5, CSS3 et JavaScript.
-Conception d'interfaces adaptatives multi-écrans à l'aide de Flexbox et des principes du Responsive Design.
-Mise en place de formulaires interactifs avec validation dynamique côté client en JavaScript.
-Intégration de plusieurs modules : présentation du club, adhésion, calendrier des événements, galerie photos et gestion des inscriptions aux événements.
-Optimisation de l'expérience utilisateur et de la navigation sur ordinateurs, tablettes et smartphones.
+Ce projet est une application web pour un club culturel. Il permet de présenter les activités, les événements et de gérer l'adhésion des membres.
 
-Technologies : HTML5, CSS3, JavaScript, Flexbox, Responsive Design, Git, GitHub.
+## Fonctionnalités
+
+*   **Accueil / Vitrine :** Présentation du club.
+*   **À propos (`about.html`) :** Informations sur l'histoire et les objectifs.
+*   **Calendrier des événements (`calendrier.html`) :** Liste des événements à venir.
+*   **Détails et Inscription (`event-details.html`, `register-event.html`) :** Consultation des détails d'un événement et formulaire d'inscription.
+*   **Galerie (`galerie.html`) :** Photos des activités passées.
+*   **Adhésion (`adhesion.html`) :** Formulaire de demande d'adhésion.
+*   **Profil Membre (`profile.html`) :** Espace pour les membres.
+*   **Contact (`contact.html`) :** Formulaire de contact.
+
+## Technologies
+
+*   **HTML5** : Structure des pages.
+*   **CSS3** : Mise en forme (dossier `/css`).
+*   **JavaScript** : Interactivité (dossier `/js`).
+
+## Installation et Utilisation
+
+Ce projet est composé de fichiers statiques front-end. Aucun serveur backend n'est requis.
+
+1.  **Cloner le dépôt :**
+    ```bash
+    git clone <URL_DU_DEPOT>
+    ```
+
+2.  **Lancer le projet :**
+    Ouvrez le fichier `index.html` dans un navigateur web. 
+    Vous pouvez également utiliser un serveur local statique ou une extension comme Live Server.
+
+## Structure du Projet
+
+```text
+├── css/                  # Fichiers CSS
+├── js/                   # Scripts JavaScript
+├── images/               # Images
+├── index.html            # Point d'entrée principal
+├── home.html             # Page d'accueil
+├── about.html            # Page À propos
+├── calendrier.html       # Calendrier
+├── event-details.html    # Détails d'un événement
+├── register-event.html   # Inscription à un événement
+├── galerie.html          # Galerie
+├── adhesion.html         # Page d'adhésion
+├── profile.html          # Profil utilisateur
+└── contact.html          # Page de contact
